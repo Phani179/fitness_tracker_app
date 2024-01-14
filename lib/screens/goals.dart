@@ -93,51 +93,53 @@ class _GoalsScreenState extends State<GoalsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(
-          height: 10,
-        ),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
-          onPressed: _modifyDailyGoal,
-          child: const Text(
-            'Modify daily goal',
-            style: TextStyle(color: Colors.white),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 10,
           ),
-        ),
-        SizedBox(
-          height: 300,
-          child: Consumer2<UserInfoProvider, GoalsProvider>(
-              builder: (context, userInfoProvider, goalsProvider, child) {
-            return StepsCountWidget(
-              steps: (userInfoProvider.steps[
-                      '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}']!
-                  as int),
-              goal: goalsProvider.dailyStepsGoal,
-            );
-          }),
-        ),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
-          onPressed: _modifyWeeklyGoal,
-          child: const Text(
-            'Modify weekly goal',
-            style: TextStyle(color: Colors.white),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
+            onPressed: _modifyDailyGoal,
+            child: const Text(
+              'Modify daily goal',
+              style: TextStyle(color: Colors.white),
+            ),
           ),
-        ),
-        SizedBox(
-          height: 300,
-          child: Consumer2<UserInfoProvider, GoalsProvider>(
-              builder: (context, userInfoProvider, goalsProvider, child) {
-               int totalSteps = _totalStepsOfThisWeek(userInfoProvider.steps);
-            return StepsCountWidget(
-              steps: totalSteps,
-              goal: goalsProvider.weeklyStepsGoal,
-            );
-          }),
-        ),
-      ],
+          SizedBox(
+            height: 300,
+            child: Consumer2<UserInfoProvider, GoalsProvider>(
+                builder: (context, userInfoProvider, goalsProvider, child) {
+              return StepsCountWidget(
+                steps: (userInfoProvider.steps[
+                        '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}']!
+                    as int),
+                goal: goalsProvider.dailyStepsGoal,
+              );
+            }),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
+            onPressed: _modifyWeeklyGoal,
+            child: const Text(
+              'Modify weekly goal',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+          SizedBox(
+            height: 300,
+            child: Consumer2<UserInfoProvider, GoalsProvider>(
+                builder: (context, userInfoProvider, goalsProvider, child) {
+                 int totalSteps = _totalStepsOfThisWeek(userInfoProvider.steps);
+              return StepsCountWidget(
+                steps: totalSteps,
+                goal: goalsProvider.weeklyStepsGoal,
+              );
+            }),
+          ),
+        ],
+      ),
     );
   }
 }

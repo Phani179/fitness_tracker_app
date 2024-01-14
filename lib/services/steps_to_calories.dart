@@ -1,4 +1,10 @@
 
+
+int count = 0;
+int steps = 0;
+int previousSteps= 0;
+DateTime? previousEventTime = DateTime(2024,1,15);
+
 const double caloriesPerKilogramPerMinute = 0.035; // Caloric expenditure per kg per minute
 const double stepsToKilometers = 0.000762; // Conversion factor from steps to kilometers
 

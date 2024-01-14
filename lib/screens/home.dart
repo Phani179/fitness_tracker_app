@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -30,22 +29,24 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  late Future<bool> _loadData;
+  int _selectedIndex = 0;
+
   @override
   void initState() {
     super.initState();
     _setUpPushNotification();
-    _fetchData(widget.user);
+    _loadData = _fetchData(widget.user);
   }
 
-  void _setUpPushNotification() async
-  {
+  void _setUpPushNotification() async {
     final fcm = FirebaseMessaging.instance;
     await fcm.requestPermission();
     // final token = await fcm.getToken();
     fcm.subscribeToTopic('fitness');
   }
 
-  Future<void> _fetchData(User? user) async {
+  Future<bool> _fetchData(User? user) async {
     DataSnapshot dataSnapshot =
         await firebaseDatabase.ref('users/${user?.uid}').get();
     if (context.mounted) {
@@ -57,83 +58,90 @@ class _HomeScreenState extends State<HomeScreen> {
       Provider.of<GoalsProvider>(context, listen: false)
           .changeWeeklyStepsGoalCount((dataSnapshot.value
               as Map<Object?, Object?>)['weeklyGoal'] as int);
+      return true;
     }
+    return false;
   }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        key: scaffoldKey,
-        drawer: const HomePageDrawer(),
-        appBar: AppBar(
-          leading: IconButton(
-              icon: const Icon(
-                Icons.menu,
-                color: Colors.white,
+          return Scaffold(
+            resizeToAvoidBottomInset: true,
+            key: scaffoldKey,
+            drawer: const HomePageDrawer(),
+            appBar: AppBar(
+              leading: IconButton(
+                  icon: const Icon(
+                    Icons.menu,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    scaffoldKey.currentState?.openDrawer();
+                  }),
+              title: const Text(
+                'Fitness Tracker',
+                style: TextStyle(color: Colors.white),
               ),
-              onPressed: () {
-                scaffoldKey.currentState?.openDrawer();
-              }),
-          title: const Text(
-            'Fitness Tracker',
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: Colors.teal,
-          actions: [
-            IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, AchievementsScreen.routeName);
+              backgroundColor: Colors.teal,
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(
+                        context, AchievementsScreen.routeName);
+                  },
+                  icon: const Icon(
+                    Icons.star_border,
+                    color: Colors.white,
+                    size: 26,
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.logout,
+                    color: Colors.white,
+                    size: 26,
+                  ),
+                  onPressed: firebaseAuth.signOut,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+              ],
+            ),
+            body:  FutureBuilder(
+                future: _loadData,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                return _selectedIndex == 0 ? const ActivitiesScreen() : const GoalsScreen();
+              }
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+              currentIndex: _selectedIndex,
+              onTap: (index){
+                setState(() {
+                  _selectedIndex = index;
+                });
               },
-              icon: const Icon(
-                Icons.star_border,
-                color: Colors.white,
-                size: 26,
-              ),
+              selectedLabelStyle: const TextStyle(fontSize: 18, color: Colors.teal),
+              unselectedLabelStyle: const TextStyle(fontSize: 16, color: Colors.teal),
+              items: const [
+                BottomNavigationBarItem(
+                  label: 'Activities',
+                  icon: Icon(Icons.access_time),
+                ),
+                BottomNavigationBarItem(
+                  label: 'Goals',
+                  icon: Icon(Icons.radar),
+                ),
+              ],
             ),
-            const SizedBox(
-              width: 10,
-            ),
-            IconButton(
-              icon: const Icon(
-                Icons.logout,
-                color: Colors.white,
-                size: 26,
-              ),
-              onPressed: firebaseAuth.signOut,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-          ],
-          bottom: TabBar(
-            indicatorSize: TabBarIndicatorSize.tab,
-            tabs: [
-              Text(
-                'Activities',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(fontSize: 18, color: Colors.white),
-              ),
-              Text(
-                'Goals',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(fontSize: 18, color: Colors.white),
-              ),
-            ],
-          ),
-        ),
-        body: const TabBarView(
-          children: [
-            ActivitiesScreen(),
-            GoalsScreen(),
-          ],
-        ),
-      ),
-    );
+          );
   }
 }

@@ -27,6 +27,13 @@ class UserInfoProvider extends ChangeNotifier
     notifyListeners();
   }
 
+  void addSteps( String date, int stepsCount)
+  {
+    steps[date] = stepsCount;
+    notifyListeners();
+  }
+
+
   bool _addNewDate(Map<Object?, Object?> stepsList)
   {
     List<Object?> dates = [...stepsList.keys.toList()];
