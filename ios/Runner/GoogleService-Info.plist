@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBbXjMilQwYG-DGMf_iAK2ZBE80xy5eXIQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>198062077802</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.fitnessTrackerApp</string>
+	<key>PROJECT_ID</key>
+	<string>fitness-tracker-app-4134b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>fitness-tracker-app-4134b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:198062077802:ios:9a2e64625ba5818ef71713</string>
+	<key>DATABASE_URL</key>
+	<string>https://fitness-tracker-app-4134b-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
