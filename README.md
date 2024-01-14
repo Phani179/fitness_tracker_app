@@ -16,6 +16,9 @@ efficient way to monitor their daily physical activities.
 - Daily Reminders
 - Cross platform(Andriod & iOS)
 
+## APK
+[FitTrack.zip](https://github.com/Phani179/fitness_tracker_app/files/13932062/FitTrack.zip)
+
 
 ## Tech Stack
 
