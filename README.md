@@ -16,6 +16,10 @@ efficient way to monitor their daily physical activities.
 - Daily Reminders
 - Cross platform(Andriod & iOS)
 
+## APK
+[FitTrack.zip](https://github.com/Phani179/fitness_tracker_app/files/13933220/FitTrack.zip)
+
+
 
 ## Tech Stack
 
@@ -55,9 +59,7 @@ Authentication, Realtime Database, Cloud messaging
 
 
 ## Screenshots
-
-
-
+![SignUp](https://github.com/Phani179/fitness_tracker_app/assets/96051826/b0a381bc-a764-4510-89d2-9a9966e5bfce) ![SignIn](https://github.com/Phani179/fitness_tracker_app/assets/96051826/e928bcc0-ed88-4dba-b76e-1e488844a50f) ![Activities](https://github.com/Phani179/fitness_tracker_app/assets/96051826/62088cc5-7833-4235-a48a-028fe8e3d92e) ![Goals](https://github.com/Phani179/fitness_tracker_app/assets/96051826/c016ac31-7d3b-4724-9947-9ab906975d7b) ![Achievements](https://github.com/Phani179/fitness_tracker_app/assets/96051826/5990e339-30ae-4a85-9cc5-03bf24532366) ![ProfileScreen](https://github.com/Phani179/fitness_tracker_app/assets/96051826/b2f540e4-f701-49c2-8387-0ff52b1d28f9) ![ProfileEdit](https://github.com/Phani179/fitness_tracker_app/assets/96051826/aecfc37d-ed1b-46cd-a07a-95e7ac25f2af)
 
 ## 🔗 Links
 [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/Phani179)
