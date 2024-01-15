@@ -2,19 +2,19 @@
 # FitTrack - A Simplified Fitness Tracking App
 
 FitTrack is a streamlined fitness tracking application aimed at providing users with an easy and
-efficient way to monitor their daily physical activities.
+an efficient way to monitor their daily physical activities.
 
 
 
 ## Features
 
 - Step Count
-- Activity Traking(Walking, Running, Cycling)
+- Activity Tracking(Walking, Running, Cycling)
 - Daily Activity Tracking
 - Daily and Weekly Goals Setup
-- Achivements
+- Achievements
 - Daily Reminders
-- Cross platform(Andriod & iOS)
+- Cross-platform(Andriod & iOS)
 
 ## APK
 [FitTrack.zip](https://github.com/Phani179/fitness_tracker_app/files/13933220/FitTrack.zip)
